@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\DWBI_project\\CubeProject_IT23363434\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1A056CC6-8254-C05B-AB7A-7A49560317B8}|CubeProject_IT23363434.dwproj|C:\\DWBI_project\\CubeProject_IT23363434\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{1A056CC6-8254-C05B-AB7A-7A49560317B8}|CubeProject_IT23363434.dwproj|solutionrelative:Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A056CC6-8254-C05B-AB7A-7A49560317B8}|CubeProject_IT23363434.dwproj|C:\\DWBI_project\\CubeProject_IT23363434\\DSV_FinancialDW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{1A056CC6-8254-C05B-AB7A-7A49560317B8}|CubeProject_IT23363434.dwproj|solutionrelative:DSV_FinancialDW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "C:\\DWBI_project\\CubeProject_IT23363434\\Dim Date.dim",
+              "RelativeDocumentMoniker": "Dim Date.dim",
+              "ToolTip": "C:\\DWBI_project\\CubeProject_IT23363434\\Dim Date.dim [Design]",
+              "RelativeToolTip": "Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-03-31T14:48:23.423Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DSV_FinancialDW.dsv [Design]",
+              "DocumentMoniker": "C:\\DWBI_project\\CubeProject_IT23363434\\DSV_FinancialDW.dsv",
+              "RelativeDocumentMoniker": "DSV_FinancialDW.dsv",
+              "ToolTip": "C:\\DWBI_project\\CubeProject_IT23363434\\DSV_FinancialDW.dsv [Design]",
+              "RelativeToolTip": "DSV_FinancialDW.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-03-31T14:44:04.223Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

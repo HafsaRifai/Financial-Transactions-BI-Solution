@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="FinancialSourceDB"
+  DTS:DTSID="{B04868CA-545F-4BCA-91B1-CEE9D191851C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LAPTOP-O1RS4JTO\SQLEXPRESS;User ID=sa;Initial Catalog=FinancialSourceDB;Provider=SQLNCLI11.1;Application Name=SSIS-Load_Staging-{B04868CA-545F-4BCA-91B1-CEE9D191851C}LAPTOP-O1RS4JTO\SQLEXPRESS.FinancialSourceDB.sa;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAd1VHSwLcGEq/ER+sMwJ0WgAAAAACAAAAAAAQZgAAAAEAACAAAAAsarJppE6bcu1f3UsrBF1wDgQEyUoETuMUfjSx+2LgZQAAAAAOgAAAAAIAACAAAADQhPMhGtUG/c8k6FyVZmPViQKg/Nqhpy/ajwByLZqhNoAAAADn/0Wdm0xX8PcyvrqxFo7Rc3Cl4ARk+fxURbo3JDeJsU10XsWlpXkK6fkpcPR+4Ko9U+f39hl/qaJh6g8Bzb8k33A1W8N0gWjfwxQxVogNkwSQIOsf5Lpj/hEfy+WGg7h+KzPovmdPW+FKCvC6goscAEFw/Kl/B+bjtY1NTuknj0AAAACaTWgZeVbSSjH86ltubXQEmL7thdiUwFbiGtnKRzL5R+B1bGUF9VZtqdOwtk0a0e+2CSHDmwe2MO/JIKWrc24z</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

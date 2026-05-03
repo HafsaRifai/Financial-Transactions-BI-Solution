@@ -1,0 +1,264 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/28/2026 4:26:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-O1RS4JTO"
+  DTS:CreatorName="LAPTOP-O1RS4JTO\hafsa"
+  DTS:DTSID="{AF4ECD47-CA18-4322-AD81-87F170DEAD9E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{81E2431F-2C80-45F1-8172-ED0BDC93FC30}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load DimCard"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A293FC1C-8A98-4337-ABCE-5FA1FB1D9B02}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimCard"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{381D4EA9-0320-4456-AA37-E963638FAFEF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimCard;&#xA;INSERT INTO DimCard (card_id, customer_id, card_brand, card_type,&#xA;    credit_limit, expires, has_chip, acct_open_date, &#xA;    year_pin_last_changed, card_on_dark_web)&#xA;&#xA;SELECT&#xA;   &#xA;         CAST(TRIM(id) AS INT), CAST(TRIM(client_id) AS INT),&#xA;         TRIM(card_brand), TRIM(card_type),&#xA;    &#xA;         TRY_CAST(REPLACE(REPLACE(TRIM(credit_limit),'$',''),',','') AS DECIMAL(12,2)),&#xA;    &#xA;        TRIM(expires), &#xA;        TRIM(has_chip), &#xA;         TRIM(acct_open_date),&#xA;         TRY_CAST(TRIM(year_pin_last_changed) AS INT), &#xA;         TRIM(card_on_dark_web)&#xA;&#xA;FROM FinancialStaging.dbo.stg_cards;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimCustomer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{55A2165B-9F6D-43BF-A0F5-293F9277E3E9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimCustomer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{381D4EA9-0320-4456-AA37-E963638FAFEF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimCustomer;&#xA;INSERT INTO DimCustomer (customer_id, gender, current_age, birth_year,&#xA;    address, latitude, longitude, per_capita_income, yearly_income,&#xA;    total_debt, credit_score, num_credit_cards, eff_start_date, eff_end_date, is_current)&#xA;SELECT&#xA;    &#xA;          CAST(TRIM(id) AS INT), TRIM(gender), &#xA;          CAST(TRIM(current_age) AS INT),&#xA;    &#xA;          CAST(TRIM(birth_year) AS INT), &#xA;          TRIM(address),&#xA;    &#xA;          TRY_CAST(TRIM(latitude) AS DECIMAL(9,6)),&#xA;          TRY_CAST(TRIM(longitude) AS DECIMAL(9,6)),&#xA;          TRY_CAST(REPLACE(REPLACE(TRIM(per_capita_income),'$',''),',','') AS DECIMAL(12,2)),&#xA;           TRY_CAST(REPLACE(REPLACE(TRIM(yearly_income),'$',''),',','') AS DECIMAL(12,2)),&#xA;    &#xA;          TRY_CAST(REPLACE(REPLACE(TRIM(total_debt),'$',''),',','') AS DECIMAL(12,2)),&#xA;    &#xA;          CAST(TRIM(credit_score) AS INT), &#xA;          CAST(TRIM(num_credit_cards) AS INT),&#xA;    &#xA;          CAST(GETDATE() AS DATE), NULL, 1&#xA;&#xA;FROM FinancialStaging.dbo.stg_users;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{87B8C18A-308E-47A1-9C19-9E7D440B8950}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{381D4EA9-0320-4456-AA37-E963638FAFEF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimDate;&#xA;DECLARE @StartDate DATE = '2010-01-01'&#xA;&#xA;DECLARE @EndDate DATE = '2019-12-31'&#xA;&#xA;&#xA;WHILE @StartDate &lt;= @EndDate&#xA;&#xA;BEGIN&#xA;   &#xA;        INSERT INTO DimDate &#xA;    &#xA;        SELECT&#xA;        &#xA;                CAST(CONVERT(VARCHAR, @StartDate, 112) AS INT),&#xA;        &#xA;                @StartDate,&#xA;       &#xA;                 YEAR(@StartDate),&#xA;        &#xA;                 DATEPART(QUARTER, @StartDate),&#xA;        &#xA;                 MONTH(@StartDate),&#xA;       &#xA;                 DATENAME(MONTH, @StartDate),&#xA;        &#xA;                 DAY(@StartDate),&#xA;       &#xA;                 DATEPART(WEEKDAY, @StartDate),&#xA;                         DATENAME(WEEKDAY, @StartDate),&#xA;        &#xA;                 CASE WHEN DATEPART(WEEKDAY, @StartDate) IN (1,7) &#xA;             &#xA;                             THEN 1 ELSE 0 END&#xA;    &#xA;      SET @StartDate = DATEADD(DAY, 1, @StartDate)&#xA;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimMCC"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3EFA2E25-BA60-417E-BEE3-5D4BFA9A38A0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimMCC"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{381D4EA9-0320-4456-AA37-E963638FAFEF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimMCC;&#xA;INSERT INTO DimMCC (mcc_code, mcc_description)&#xA;&#xA;SELECT &#xA;    &#xA;              mcc_code,&#xA;    &#xA;              TRIM(mcc_description)&#xA;&#xA;FROM FinancialStaging.dbo.stg_mcc_codes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load DimMerchant"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6FFAFD1B-7F51-466C-932C-AB08A7C4EDD9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DimMerchant"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{381D4EA9-0320-4456-AA37-E963638FAFEF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimMerchant;&#xA;INSERT INTO DimMerchant (merchant_id, mcc_sk, merchant_city, &#xA;    merchant_state, merchant_zip)&#xA;&#xA;SELECT DISTINCT &#xA;    &#xA;        TRIM(t.merchant_id), m.mcc_sk,&#xA;    TRIM(t.merchant_city),          TRIM(t.merchant_state), TRIM(t.zip)&#xA;&#xA;FROM FinancialStaging.dbo.stg_transactions t&#xA;&#xA;JOIN FinancialDW.dbo.DimMCC m &#xA;    &#xA;             ON CAST(TRIM(t.mcc) AS INT) = m.mcc_code&#xA;&#xA;WHERE t.merchant_id IS NOT NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D82E4EC9-80AA-48F8-A762-9C32637B58B4}"
+      DTS:From="Package\Load DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DimMCC" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AA10384C-5E08-4ACB-873A-B951D6503E76}"
+      DTS:From="Package\Load DimMCC"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load DimCustomer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8539940D-EC89-4568-81F6-8DBF84C82CD1}"
+      DTS:From="Package\Load DimCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load DimCard" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{ADF909C5-73DA-4AF1-B274-BD6B78B95E8A}"
+      DTS:From="Package\Load DimCard"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load DimMerchant" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Load DimCard"
+          TopLeft="174.089734378406,279.705127449474" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Load DimCustomer"
+          TopLeft="169.474351654323,186.83333228098" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Load DimDate"
+          TopLeft="181.589733968625,23.7666665396425" />
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Load DimMCC"
+          TopLeft="177.294862408414,102.166665994459" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\Load DimMerchant"
+          TopLeft="164.474350288383,365.24358870978" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="252.242298188519,65.3666665396426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.7999994548162"
+              Start="0,0"
+              End="0,29.2999994548162">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2999994548162" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="251.984607031369,143.766665994459">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.0666662865215"
+              Start="0,0"
+              End="0,35.5666662865215">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5666662865215" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="250.182043016365,228.43333228098">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.2717951684935"
+              Start="0,0"
+              End="0,43.7717951684935">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.7717951684935" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="247.282042333395,321.305127449474">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.9384612603065"
+              Start="0,0"
+              End="0,36.4384612603065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.4384612603065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
